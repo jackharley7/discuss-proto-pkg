@@ -16,10 +16,10 @@ IMAGE_TAG ?= latest
 # 		--go_out=plugins=grpc:. -I . proto/conversation.proto proto/link.proto proto/invitation.proto \
 # 	gofmt -w proto
 
-copyprotos:
-	cp ../conversationservice/proto/*.proto /
-
 codegen:
+	cp ../conversationservice/proto/*.proto ./
+	cp ../notificationservice/proto/*.proto ./
+	cp ../userservice/proto/*.proto ./
 	GO111MODULE=off go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 	GO111MODULE=off go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 	go install $(shell go list -f '{{ .Dir }}' -m github.com/golang/protobuf)/protoc-gen-go
@@ -29,19 +29,22 @@ codegen:
 		--grpc-gateway_out=logtostderr=true:. \
 		--swagger_out=logtostderr=true:. \
 		--go_out=plugins=grpc:. \
-		proto/conversation.proto proto/link.proto proto/invitation.proto
+		--govalidators_out=. \
+		conversation.proto link.proto invitation.proto
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--grpc-gateway_out=logtostderr=true:. \
 		--swagger_out=logtostderr=true:. \
 		--go_out=plugins=grpc:. \
-		proto/notification.proto proto/counts.proto
+		--govalidators_out=. \
+		notification.proto counts.proto
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--grpc-gateway_out=logtostderr=true:. \
 		--swagger_out=logtostderr=true:. \
 		--go_out=plugins=grpc:. \
-		proto/profile.proto proto/user.proto proto/userTemp.proto proto/education.proto proto/workexperience.proto
+		--govalidators_out=. \
+		profile.proto user.proto userTemp.proto education.proto workexperience.proto
 
