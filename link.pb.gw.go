@@ -2,11 +2,11 @@
 // source: link.proto
 
 /*
-Package conversationproto is a reverse proxy.
+Package proto is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package conversationproto
+package proto
 
 import (
 	"context"
