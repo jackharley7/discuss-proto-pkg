@@ -1,0 +1,12 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# dont include swagger docs
+*.json
+
+# dont include proto docs
+*.proto
