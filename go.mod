@@ -1,4 +1,4 @@
-module proto
+module github.com/jackharley7/discussproto
 
 go 1.12
 
