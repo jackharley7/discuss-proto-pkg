@@ -2,11 +2,11 @@
 // source: profile.proto
 
 /*
-Package proto is a reverse proxy.
+Package discussproto is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package proto
+package discussproto
 
 import (
 	"context"
