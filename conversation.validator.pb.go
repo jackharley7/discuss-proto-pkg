@@ -17,9 +17,6 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *ConvUser) Validate() error {
-	return nil
-}
 func (this *ConversationEntry) Validate() error {
 	for _, item := range this.Links {
 		if item != nil {
