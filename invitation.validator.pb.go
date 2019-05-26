@@ -25,7 +25,7 @@ func (this *Invitation) Validate() error {
 	}
 	return nil
 }
-func (this *Count) Validate() error {
+func (this *InvitationCount) Validate() error {
 	return nil
 }
 func (this *CreateConversationMessage) Validate() error {
@@ -58,9 +58,9 @@ func (this *GetUnseenInvitationsByUserIDMessage) Validate() error {
 	return nil
 }
 func (this *GetUnseenInvitationsByUserIDResponse) Validate() error {
-	if this.Counts != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Counts); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Counts", err)
+	if this.Count != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Count); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Count", err)
 		}
 	}
 	return nil

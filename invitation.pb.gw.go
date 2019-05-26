@@ -53,7 +53,10 @@ func request_InvitationService_GetUnseenInvitationsByUserID_0(ctx context.Contex
 	var protoReq GetUnseenInvitationsByUserIDMessage
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_InvitationService_GetUnseenInvitationsByUserID_0); err != nil {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_InvitationService_GetUnseenInvitationsByUserID_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -70,7 +73,10 @@ func request_InvitationService_GetInvitationsByUserID_0(ctx context.Context, mar
 	var protoReq GetInvitationsByUserIDMessage
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_InvitationService_GetInvitationsByUserID_0); err != nil {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_InvitationService_GetInvitationsByUserID_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
