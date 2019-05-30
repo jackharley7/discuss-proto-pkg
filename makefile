@@ -20,6 +20,7 @@ codegen:
 	cp ../conversationservice/proto/*.proto ./
 	cp ../notificationservice/proto/*.proto ./
 	cp ../userservice/proto/*.proto ./
+	cp ../changemymindservice/proto/*.proto ./
 	GO111MODULE=off go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 	GO111MODULE=off go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 	go install $(shell go list -f '{{ .Dir }}' -m github.com/golang/protobuf)/protoc-gen-go
@@ -47,4 +48,12 @@ codegen:
 		--go_out=plugins=grpc:. \
 		--govalidators_out=. \
 		profile.proto user.proto userTemp.proto education.proto workexperience.proto
+	protoc -I/usr/local/include -I. \
+		-I${GOPATH}/src \
+		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+		--grpc-gateway_out=logtostderr=true:. \
+		--swagger_out=logtostderr=true:. \
+		--go_out=plugins=grpc:. \
+		--govalidators_out=. \
+		cmm.proto
 
