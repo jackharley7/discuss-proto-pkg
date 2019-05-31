@@ -20,7 +20,7 @@ var _ = math.Inf
 func (this *User) Validate() error {
 	return nil
 }
-func (this *Link) Validate() error {
+func (this *CMMLink) Validate() error {
 	return nil
 }
 func (this *CMM) Validate() error {
