@@ -148,3 +148,16 @@ func (this *GetConversationEntriesResponse) Validate() error {
 	}
 	return nil
 }
+func (this *GetAllRequest) Validate() error {
+	return nil
+}
+func (this *GetAllResponse) Validate() error {
+	for _, item := range this.ConversationList {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("ConversationList", err)
+			}
+		}
+	}
+	return nil
+}

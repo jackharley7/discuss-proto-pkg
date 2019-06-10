@@ -406,7 +406,7 @@ var (
 
 	pattern_CMMService_GetCMMsByMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "cmm", "me"}, ""))
 
-	pattern_CMMService_GetCMMsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "userId"}, ""))
+	pattern_CMMService_GetCMMsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "user", "userId", "cmm"}, ""))
 )
 
 var (
