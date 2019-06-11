@@ -547,7 +547,7 @@ func RegisterConversationServiceHandlerClient(ctx context.Context, mux *runtime.
 }
 
 var (
-	pattern_ConversationService_GetAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "conversation"}, ""))
+	pattern_ConversationService_GetAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "conversation"}, ""))
 
 	pattern_ConversationService_GetByUserMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "conversation", "me"}, ""))
 
