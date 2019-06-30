@@ -394,19 +394,19 @@ func RegisterCMMServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 }
 
 var (
-	pattern_CMMService_CreateCMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "cmm"}, ""))
+	pattern_CMMService_CreateCMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "cmm"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_UpdateCMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "cmmId"}, ""))
+	pattern_CMMService_UpdateCMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "cmmId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_DeleteCMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "cmmId"}, ""))
+	pattern_CMMService_DeleteCMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "cmmId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_GetCMMByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "cmmId"}, ""))
+	pattern_CMMService_GetCMMByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "cmm", "cmmId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_GetCMMs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "cmm"}, ""))
+	pattern_CMMService_GetCMMs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "cmm"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_GetCMMsByMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "cmm", "me"}, ""))
+	pattern_CMMService_GetCMMsByMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "cmm", "me"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_GetCMMsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "user", "userId", "cmm"}, ""))
+	pattern_CMMService_GetCMMsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "user", "userId", "cmm"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

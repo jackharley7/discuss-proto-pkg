@@ -209,11 +209,11 @@ func RegisterWorkExperienceServiceHandlerClient(ctx context.Context, mux *runtim
 }
 
 var (
-	pattern_WorkExperienceService_CreateWorkExperience_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "user", "me", "work-experience"}, ""))
+	pattern_WorkExperienceService_CreateWorkExperience_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "user", "me", "work-experience"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_WorkExperienceService_UpdateWorkExperience_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "work-experience", "id"}, ""))
+	pattern_WorkExperienceService_UpdateWorkExperience_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "work-experience", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_WorkExperienceService_DeleteWorkExperience_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "work-experience", "id"}, ""))
+	pattern_WorkExperienceService_DeleteWorkExperience_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "work-experience", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

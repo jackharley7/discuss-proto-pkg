@@ -147,9 +147,9 @@ func RegisterLinkServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_LinkService_CreateLink_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "link"}, ""))
+	pattern_LinkService_CreateLink_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "link"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_LinkService_BuildLinkFromURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "link-from-url"}, ""))
+	pattern_LinkService_BuildLinkFromURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "link-from-url"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

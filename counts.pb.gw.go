@@ -99,7 +99,7 @@ func RegisterCountServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_CountService_GetUserCounts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "notification", "counts", "me"}, ""))
+	pattern_CountService_GetUserCounts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "notification", "counts", "me"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

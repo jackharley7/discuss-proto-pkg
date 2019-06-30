@@ -157,9 +157,9 @@ func RegisterNotificationServiceHandlerClient(ctx context.Context, mux *runtime.
 }
 
 var (
-	pattern_NotificationService_GetNotifications_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "notification", "me"}, ""))
+	pattern_NotificationService_GetNotifications_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "notification", "me"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_NotificationService_ViewedNotification_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "notification", "notificationId", "viewed"}, ""))
+	pattern_NotificationService_ViewedNotification_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "notification", "notificationId", "viewed"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

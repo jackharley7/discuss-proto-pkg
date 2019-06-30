@@ -670,35 +670,35 @@ func RegisterUserServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_UserService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "login"}, ""))
+	pattern_UserService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "login"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_CheckForUsername_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "p", "username", "check"}, ""))
+	pattern_UserService_CheckForUsername_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "p", "username", "check"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_CreateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "user"}, ""))
+	pattern_UserService_CreateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "user"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ChangePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "password", "change"}, ""))
+	pattern_UserService_ChangePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "password", "change"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ChangePasswordFromTemp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "password", "change-from-temp"}, ""))
+	pattern_UserService_ChangePasswordFromTemp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "password", "change-from-temp"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_RequestPasswordReset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "p", "user", "password", "request-reset"}, ""))
+	pattern_UserService_RequestPasswordReset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "p", "user", "password", "request-reset"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetUsers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "user"}, ""))
+	pattern_UserService_GetUsers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "user"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetByIDs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 2}, []string{"api", "user", "ids"}, ""))
+	pattern_UserService_GetByIDs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 2}, []string{"api", "user", "ids"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetUserById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "p", "user", "userId"}, ""))
+	pattern_UserService_GetUserById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "p", "user", "userId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetUserMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "user", "me"}, ""))
+	pattern_UserService_GetUserMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "user", "me"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_UpdateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "user", "me"}, ""))
+	pattern_UserService_UpdateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "user", "me"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "user"}, ""))
+	pattern_UserService_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "user"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_LinkTwitter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "twitter", "link"}, ""))
+	pattern_UserService_LinkTwitter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "twitter", "link"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_UnLinkTwitter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "twitter", "unlink"}, ""))
+	pattern_UserService_UnLinkTwitter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "twitter", "unlink"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetTwitterUserByScreenName_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "twitter", "user"}, ""))
+	pattern_UserService_GetTwitterUserByScreenName_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "twitter", "user"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

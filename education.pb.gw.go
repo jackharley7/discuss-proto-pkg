@@ -209,11 +209,11 @@ func RegisterEducationServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_EducationService_CreateEducation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "user", "me", "education"}, ""))
+	pattern_EducationService_CreateEducation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "user", "me", "education"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_EducationService_UpdateEducation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "education", "id"}, ""))
+	pattern_EducationService_UpdateEducation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "education", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_EducationService_DeleteEducation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "education", "id"}, ""))
+	pattern_EducationService_DeleteEducation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "user", "me", "education", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

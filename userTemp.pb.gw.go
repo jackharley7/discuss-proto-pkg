@@ -221,13 +221,13 @@ func RegisterUserTempServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_UserTempService_CreateUserTemp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "signup"}, ""))
+	pattern_UserTempService_CreateUserTemp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "signup"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserTempService_VerfiyUserTemp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "signup", "verify"}, ""))
+	pattern_UserTempService_VerfiyUserTemp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "signup", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserTempService_GetTwitterRequestToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "p", "signup", "twitter", "token"}, ""))
+	pattern_UserTempService_GetTwitterRequestToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "p", "signup", "twitter", "token"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserTempService_TwitterSignup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "signup", "twitter"}, ""))
+	pattern_UserTempService_TwitterSignup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "signup", "twitter"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
