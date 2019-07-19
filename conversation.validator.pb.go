@@ -7,8 +7,8 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -157,6 +157,17 @@ func (this *GetAllResponse) Validate() error {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
 				return github_com_mwitkow_go_proto_validators.FieldError("ConversationList", err)
 			}
+		}
+	}
+	return nil
+}
+func (this *CreateConversationFromCMMCommentRequest) Validate() error {
+	return nil
+}
+func (this *CreateConversationFromCMMCommentResponse) Validate() error {
+	if this.Conversation != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Conversation); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Conversation", err)
 		}
 	}
 	return nil

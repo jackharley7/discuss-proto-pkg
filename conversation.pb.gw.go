@@ -325,6 +325,23 @@ func request_ConversationService_GetConversationEntries_0(ctx context.Context, m
 
 }
 
+func request_ConversationService_CreateConversationFromCMMComment_0(ctx context.Context, marshaler runtime.Marshaler, client ConversationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateConversationFromCMMCommentRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.CreateConversationFromCMMComment(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
 // RegisterConversationServiceHandlerFromEndpoint is same as RegisterConversationServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterConversationServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
@@ -543,6 +560,26 @@ func RegisterConversationServiceHandlerClient(ctx context.Context, mux *runtime.
 
 	})
 
+	mux.Handle("POST", pattern_ConversationService_CreateConversationFromCMMComment_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ConversationService_CreateConversationFromCMMComment_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ConversationService_CreateConversationFromCMMComment_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -564,6 +601,8 @@ var (
 	pattern_ConversationService_GetConversationEntryDraft_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 2, 4}, []string{"api", "conversation", "conversationId", "user", "draft"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_ConversationService_GetConversationEntries_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "p", "conversation", "conversationId", "entries"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_ConversationService_CreateConversationFromCMMComment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "conversation", "cmm"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -584,4 +623,6 @@ var (
 	forward_ConversationService_GetConversationEntryDraft_0 = runtime.ForwardResponseMessage
 
 	forward_ConversationService_GetConversationEntries_0 = runtime.ForwardResponseMessage
+
+	forward_ConversationService_CreateConversationFromCMMComment_0 = runtime.ForwardResponseMessage
 )
