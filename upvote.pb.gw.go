@@ -55,7 +55,7 @@ func request_UpvoteService_Upvote_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "itemId")
 	}
 
-	protoReq.ItemId, err = runtime.Int64(val)
+	protoReq.ItemId, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "itemId", err)
@@ -93,7 +93,7 @@ func request_UpvoteService_Downvote_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "itemId")
 	}
 
-	protoReq.ItemId, err = runtime.Int64(val)
+	protoReq.ItemId, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "itemId", err)
@@ -131,7 +131,7 @@ func request_UpvoteService_RemoveVote_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "itemId")
 	}
 
-	protoReq.ItemId, err = runtime.Int64(val)
+	protoReq.ItemId, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "itemId", err)

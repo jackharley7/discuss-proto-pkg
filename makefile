@@ -17,12 +17,12 @@ IMAGE_TAG ?= latest
 # 	gofmt -w proto
 
 codegen:
-	cp ../discuss-conversation-service/proto/*.proto ./
-	cp ../discuss-notification-service/proto/*.proto ./
-	cp ../discuss-user-service/proto/*.proto ./
-	cp ../discuss-cmm-service/proto/*.proto ./
-	cp ../discuss-comment-service/proto/*.proto ./
-	cp ../discuss-upvote-service/proto/*.proto ./
+	cp ../conversationservice/proto/*.proto ./
+	cp ../notificationservice/proto/*.proto ./
+	cp ../userservice/proto/*.proto ./
+	cp ../cmmservice/proto/*.proto ./
+	cp ../commentservice/proto/*.proto ./
+	cp ../upvoteservice/proto/*.proto ./
 	GO111MODULE=off go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 	GO111MODULE=off go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 	go install $(shell go list -f '{{ .Dir }}' -m github.com/golang/protobuf)/protoc-gen-go
