@@ -85,6 +85,19 @@ func (this *GetCMMByIDResponse) Validate() error {
 	}
 	return nil
 }
+func (this *SearchCMMsRequest) Validate() error {
+	return nil
+}
+func (this *SearchCMMsResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
 func (this *GetCMMsRequest) Validate() error {
 	return nil
 }

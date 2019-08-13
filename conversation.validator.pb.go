@@ -148,10 +148,10 @@ func (this *GetConversationEntriesResponse) Validate() error {
 	}
 	return nil
 }
-func (this *GetAllRequest) Validate() error {
+func (this *SearchRequest) Validate() error {
 	return nil
 }
-func (this *GetAllResponse) Validate() error {
+func (this *SearchResponse) Validate() error {
 	for _, item := range this.ConversationList {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {

@@ -155,21 +155,39 @@ func request_CMMService_GetCMMByID_0(ctx context.Context, marshaler runtime.Mars
 }
 
 var (
-	filter_CMMService_GetCMMs_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_CMMService_SearchCMMs_0 = &utilities.DoubleArray{Encoding: map[string]int{"query": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
-func request_CMMService_GetCMMs_0(ctx context.Context, marshaler runtime.Marshaler, client CMMServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCMMsRequest
+func request_CMMService_SearchCMMs_0(ctx context.Context, marshaler runtime.Marshaler, client CMMServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SearchCMMsRequest
 	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["query"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "query")
+	}
+
+	protoReq.Query, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "query", err)
+	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CMMService_GetCMMs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_CMMService_SearchCMMs_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetCMMs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.SearchCMMs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -350,7 +368,7 @@ func RegisterCMMServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 
 	})
 
-	mux.Handle("GET", pattern_CMMService_GetCMMs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_CMMService_SearchCMMs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -359,14 +377,14 @@ func RegisterCMMServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CMMService_GetCMMs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CMMService_SearchCMMs_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CMMService_GetCMMs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CMMService_SearchCMMs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -404,7 +422,7 @@ var (
 
 	pattern_CMMService_GetCMMByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "p", "cmm", "cmmId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CMMService_GetCMMs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "cmm"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CMMService_SearchCMMs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "p", "cmm", "search", "query"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_CMMService_GetCMMsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "p", "user", "userId", "cmm"}, "", runtime.AssumeColonVerbOpt(true)))
 )
@@ -420,7 +438,7 @@ var (
 
 	forward_CMMService_GetCMMByID_0 = runtime.ForwardResponseMessage
 
-	forward_CMMService_GetCMMs_0 = runtime.ForwardResponseMessage
+	forward_CMMService_SearchCMMs_0 = runtime.ForwardResponseMessage
 
 	forward_CMMService_GetCMMsByUserID_0 = runtime.ForwardResponseMessage
 )

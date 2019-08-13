@@ -29,21 +29,39 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
 var (
-	filter_ConversationService_GetAll_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_ConversationService_Search_0 = &utilities.DoubleArray{Encoding: map[string]int{"query": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
-func request_ConversationService_GetAll_0(ctx context.Context, marshaler runtime.Marshaler, client ConversationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetAllRequest
+func request_ConversationService_Search_0(ctx context.Context, marshaler runtime.Marshaler, client ConversationServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SearchRequest
 	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["query"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "query")
+	}
+
+	protoReq.Query, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "query", err)
+	}
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConversationService_GetAll_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ConversationService_Search_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetAll(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Search(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -380,7 +398,7 @@ func RegisterConversationServiceHandler(ctx context.Context, mux *runtime.ServeM
 // "ConversationServiceClient" to call the correct interceptors.
 func RegisterConversationServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ConversationServiceClient) error {
 
-	mux.Handle("GET", pattern_ConversationService_GetAll_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_ConversationService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -389,14 +407,14 @@ func RegisterConversationServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConversationService_GetAll_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ConversationService_Search_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ConversationService_GetAll_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ConversationService_Search_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -584,7 +602,7 @@ func RegisterConversationServiceHandlerClient(ctx context.Context, mux *runtime.
 }
 
 var (
-	pattern_ConversationService_GetAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "p", "conversation"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_ConversationService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "p", "conversation", "search", "query"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_ConversationService_GetByUserMe_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "conversation", "me"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -606,7 +624,7 @@ var (
 )
 
 var (
-	forward_ConversationService_GetAll_0 = runtime.ForwardResponseMessage
+	forward_ConversationService_Search_0 = runtime.ForwardResponseMessage
 
 	forward_ConversationService_GetByUserMe_0 = runtime.ForwardResponseMessage
 
