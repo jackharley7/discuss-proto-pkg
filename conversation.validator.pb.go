@@ -152,10 +152,22 @@ func (this *SearchRequest) Validate() error {
 	return nil
 }
 func (this *SearchResponse) Validate() error {
-	for _, item := range this.ConversationList {
+	return nil
+}
+func (this *GetConversationOrderRequest) Validate() error {
+	return nil
+}
+func (this *GetConversationOrderResponse) Validate() error {
+	return nil
+}
+func (this *GetConversationsByIDsRequest) Validate() error {
+	return nil
+}
+func (this *GetConversationsByIDsResponse) Validate() error {
+	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("ConversationList", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 			}
 		}
 	}
