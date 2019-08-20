@@ -684,7 +684,7 @@ func RegisterConversationServiceHandlerClient(ctx context.Context, mux *runtime.
 var (
 	pattern_ConversationService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "p", "conversation", "search", "query"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_ConversationService_GetConversationOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "conversation", "order"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_ConversationService_GetConversationOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "p", "conversation", "ids", "search"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_ConversationService_GetConversationsByIDs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "p", "conversation", "ids"}, "", runtime.AssumeColonVerbOpt(true)))
 
