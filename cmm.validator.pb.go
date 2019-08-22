@@ -89,6 +89,18 @@ func (this *SearchCMMsRequest) Validate() error {
 	return nil
 }
 func (this *SearchCMMsResponse) Validate() error {
+	return nil
+}
+func (this *GetCMMOrderRequest) Validate() error {
+	return nil
+}
+func (this *GetCMMOrderResponse) Validate() error {
+	return nil
+}
+func (this *GetCMMsByIDsRequest) Validate() error {
+	return nil
+}
+func (this *GetCMMsByIDsResponse) Validate() error {
 	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
