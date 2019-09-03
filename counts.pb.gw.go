@@ -37,6 +37,43 @@ func request_CountService_GetUserCounts_0(ctx context.Context, marshaler runtime
 
 }
 
+func local_request_CountService_GetUserCounts_0(ctx context.Context, marshaler runtime.Marshaler, server CountServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetUserCountsRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetUserCounts(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+// RegisterCountServiceHandlerServer registers the http handlers for service CountService to "mux".
+// UnaryRPC     :call CountServiceServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+func RegisterCountServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CountServiceServer) error {
+
+	mux.Handle("GET", pattern_CountService_GetUserCounts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_CountService_GetUserCounts_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_CountService_GetUserCounts_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
 // RegisterCountServiceHandlerFromEndpoint is same as RegisterCountServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterCountServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {

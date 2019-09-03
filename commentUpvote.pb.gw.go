@@ -55,6 +55,33 @@ func request_CommentUpvoteService_UpvoteComment_0(ctx context.Context, marshaler
 
 }
 
+func local_request_CommentUpvoteService_UpvoteComment_0(ctx context.Context, marshaler runtime.Marshaler, server CommentUpvoteServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpvoteCommentRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["commentId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "commentId")
+	}
+
+	protoReq.CommentId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "commentId", err)
+	}
+
+	msg, err := server.UpvoteComment(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_CommentUpvoteService_DownvoteComment_0(ctx context.Context, marshaler runtime.Marshaler, client CommentUpvoteServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DownvoteCommentRequest
 	var metadata runtime.ServerMetadata
@@ -78,6 +105,33 @@ func request_CommentUpvoteService_DownvoteComment_0(ctx context.Context, marshal
 	}
 
 	msg, err := client.DownvoteComment(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_CommentUpvoteService_DownvoteComment_0(ctx context.Context, marshaler runtime.Marshaler, server CommentUpvoteServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DownvoteCommentRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["commentId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "commentId")
+	}
+
+	protoReq.CommentId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "commentId", err)
+	}
+
+	msg, err := server.DownvoteComment(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -107,6 +161,101 @@ func request_CommentUpvoteService_RemoveVoteComment_0(ctx context.Context, marsh
 	msg, err := client.RemoveVoteComment(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
+}
+
+func local_request_CommentUpvoteService_RemoveVoteComment_0(ctx context.Context, marshaler runtime.Marshaler, server CommentUpvoteServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RemoveVoteCommentRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["commentId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "commentId")
+	}
+
+	protoReq.CommentId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "commentId", err)
+	}
+
+	msg, err := server.RemoveVoteComment(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+// RegisterCommentUpvoteServiceHandlerServer registers the http handlers for service CommentUpvoteService to "mux".
+// UnaryRPC     :call CommentUpvoteServiceServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+func RegisterCommentUpvoteServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CommentUpvoteServiceServer) error {
+
+	mux.Handle("POST", pattern_CommentUpvoteService_UpvoteComment_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_CommentUpvoteService_UpvoteComment_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_CommentUpvoteService_UpvoteComment_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_CommentUpvoteService_DownvoteComment_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_CommentUpvoteService_DownvoteComment_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_CommentUpvoteService_DownvoteComment_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_CommentUpvoteService_RemoveVoteComment_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_CommentUpvoteService_RemoveVoteComment_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_CommentUpvoteService_RemoveVoteComment_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
 }
 
 // RegisterCommentUpvoteServiceHandlerFromEndpoint is same as RegisterCommentUpvoteServiceHandler but

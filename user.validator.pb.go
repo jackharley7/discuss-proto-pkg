@@ -249,3 +249,9 @@ func (this *GetTwitterUserByScreenNameResponse) Validate() error {
 	}
 	return nil
 }
+func (this *GetProfileImageUploadURLRequest) Validate() error {
+	return nil
+}
+func (this *GetProfileImageUploadURLResponse) Validate() error {
+	return nil
+}
