@@ -13,6 +13,7 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/utilities"
@@ -22,11 +23,13 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+// Suppress "imported and not used" errors
 var _ codes.Code
 var _ io.Reader
 var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
+var _ = descriptor.ForMessage
 
 func request_CommentService_CreateComment_0(ctx context.Context, marshaler runtime.Marshaler, client CommentServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateCommentRequest
@@ -343,7 +346,7 @@ func RegisterCommentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 var (
 	pattern_CommentService_CreateComment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "comments", "cat", "category", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_CommentService_GetComments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "comments", "cat", "category", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_CommentService_GetComments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "p", "comments", "cat", "category", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
