@@ -127,25 +127,11 @@ func (this *GetCMMsByMeRequest) Validate() error {
 	return nil
 }
 func (this *GetCMMsByMeResponse) Validate() error {
-	for _, item := range this.Data {
-		if item != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-			}
-		}
-	}
 	return nil
 }
 func (this *GetCMMsByUserIDRequest) Validate() error {
 	return nil
 }
 func (this *GetCMMsByUserIDResponse) Validate() error {
-	for _, item := range this.Data {
-		if item != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-			}
-		}
-	}
 	return nil
 }
