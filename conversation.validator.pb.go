@@ -53,26 +53,12 @@ func (this *GetByUserIDMessage) Validate() error {
 	return nil
 }
 func (this *GetByUserIDResponse) Validate() error {
-	for _, item := range this.ConversationList {
-		if item != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("ConversationList", err)
-			}
-		}
-	}
 	return nil
 }
 func (this *GetByUserMeMessage) Validate() error {
 	return nil
 }
 func (this *GetByUserMeResponse) Validate() error {
-	for _, item := range this.ConversationList {
-		if item != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("ConversationList", err)
-			}
-		}
-	}
 	return nil
 }
 func (this *GetByIDMessage) Validate() error {
