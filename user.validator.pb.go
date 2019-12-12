@@ -95,6 +95,9 @@ func (this *ChangePasswordResponse) Validate() error {
 	return nil
 }
 func (this *ChangePasswordFromTempRequest) Validate() error {
+	if this.Email == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
+	}
 	if this.TempPassword == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("TempPassword", fmt.Errorf(`value '%v' must not be an empty string`, this.TempPassword))
 	}
