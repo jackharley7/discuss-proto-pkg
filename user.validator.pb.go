@@ -40,8 +40,8 @@ func (this *User) Validate() error {
 	return nil
 }
 func (this *LoginRequest) Validate() error {
-	if this.Username == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Username", fmt.Errorf(`value '%v' must not be an empty string`, this.Username))
+	if this.Email == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
 	}
 	if this.Password == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must not be an empty string`, this.Password))
@@ -62,19 +62,7 @@ func (this *RefreshUserTokenRequest) Validate() error {
 func (this *RefreshUserTokenResponse) Validate() error {
 	return nil
 }
-func (this *CheckForUsernameRequest) Validate() error {
-	if this.Username == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Username", fmt.Errorf(`value '%v' must not be an empty string`, this.Username))
-	}
-	return nil
-}
-func (this *CheckForUsernameResponse) Validate() error {
-	return nil
-}
 func (this *CreateUserRequest) Validate() error {
-	if this.Username == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Username", fmt.Errorf(`value '%v' must not be an empty string`, this.Username))
-	}
 	if this.Password == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must not be an empty string`, this.Password))
 	}
