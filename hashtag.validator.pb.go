@@ -22,6 +22,12 @@ func (this *HashTag) Validate() error {
 func (this *HashTagItem) Validate() error {
 	return nil
 }
+func (this *GetHashTagsRequest) Validate() error {
+	return nil
+}
+func (this *GetHashTagsResponse) Validate() error {
+	return nil
+}
 func (this *GetHashTagRequest) Validate() error {
 	return nil
 }
