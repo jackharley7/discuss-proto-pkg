@@ -24,47 +24,63 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Type int32
+type NotificationType int32
 
 const (
-	Type_UNKNOWN         Type = 0
-	Type_INVITE          Type = 1
-	Type_ACCEPTED        Type = 2
-	Type_DECLINED        Type = 3
-	Type_RESPONSE        Type = 4
-	Type_RESPONSEVIEWED  Type = 5
-	Type_COMMENTACCEPTED Type = 6
+	NotificationType_DEFAULT   NotificationType = 0
+	NotificationType_SINGLE    NotificationType = 1
+	NotificationType_PERMINANT NotificationType = 2
+	NotificationType_COUNT     NotificationType = 3
 )
 
-var Type_name = map[int32]string{
-	0: "UNKNOWN",
-	1: "INVITE",
-	2: "ACCEPTED",
-	3: "DECLINED",
-	4: "RESPONSE",
-	5: "RESPONSEVIEWED",
-	6: "COMMENTACCEPTED",
+var NotificationType_name = map[int32]string{
+	0: "DEFAULT",
+	1: "SINGLE",
+	2: "PERMINANT",
+	3: "COUNT",
 }
 
-var Type_value = map[string]int32{
-	"UNKNOWN":         0,
-	"INVITE":          1,
-	"ACCEPTED":        2,
-	"DECLINED":        3,
-	"RESPONSE":        4,
-	"RESPONSEVIEWED":  5,
-	"COMMENTACCEPTED": 6,
+var NotificationType_value = map[string]int32{
+	"DEFAULT":   0,
+	"SINGLE":    1,
+	"PERMINANT": 2,
+	"COUNT":     3,
 }
 
-func (x Type) String() string {
-	return proto.EnumName(Type_name, int32(x))
+func (x NotificationType) String() string {
+	return proto.EnumName(NotificationType_name, int32(x))
 }
 
-func (Type) EnumDescriptor() ([]byte, []int) {
+func (NotificationType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_736a457d4a5efa07, []int{0}
 }
 
-type UserObj struct {
+type ActionType int32
+
+const (
+	ActionType_SHOW    ActionType = 0
+	ActionType_DISMISS ActionType = 1
+)
+
+var ActionType_name = map[int32]string{
+	0: "SHOW",
+	1: "DISMISS",
+}
+
+var ActionType_value = map[string]int32{
+	"SHOW":    0,
+	"DISMISS": 1,
+}
+
+func (x ActionType) String() string {
+	return proto.EnumName(ActionType_name, int32(x))
+}
+
+func (ActionType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_736a457d4a5efa07, []int{1}
+}
+
+type NotificationUser struct {
 	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Avatar               string   `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
@@ -73,46 +89,46 @@ type UserObj struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserObj) Reset()         { *m = UserObj{} }
-func (m *UserObj) String() string { return proto.CompactTextString(m) }
-func (*UserObj) ProtoMessage()    {}
-func (*UserObj) Descriptor() ([]byte, []int) {
+func (m *NotificationUser) Reset()         { *m = NotificationUser{} }
+func (m *NotificationUser) String() string { return proto.CompactTextString(m) }
+func (*NotificationUser) ProtoMessage()    {}
+func (*NotificationUser) Descriptor() ([]byte, []int) {
 	return fileDescriptor_736a457d4a5efa07, []int{0}
 }
 
-func (m *UserObj) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserObj.Unmarshal(m, b)
+func (m *NotificationUser) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_NotificationUser.Unmarshal(m, b)
 }
-func (m *UserObj) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserObj.Marshal(b, m, deterministic)
+func (m *NotificationUser) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_NotificationUser.Marshal(b, m, deterministic)
 }
-func (m *UserObj) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserObj.Merge(m, src)
+func (m *NotificationUser) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NotificationUser.Merge(m, src)
 }
-func (m *UserObj) XXX_Size() int {
-	return xxx_messageInfo_UserObj.Size(m)
+func (m *NotificationUser) XXX_Size() int {
+	return xxx_messageInfo_NotificationUser.Size(m)
 }
-func (m *UserObj) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserObj.DiscardUnknown(m)
+func (m *NotificationUser) XXX_DiscardUnknown() {
+	xxx_messageInfo_NotificationUser.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UserObj proto.InternalMessageInfo
+var xxx_messageInfo_NotificationUser proto.InternalMessageInfo
 
-func (m *UserObj) GetId() int64 {
+func (m *NotificationUser) GetId() int64 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-func (m *UserObj) GetName() string {
+func (m *NotificationUser) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *UserObj) GetAvatar() string {
+func (m *NotificationUser) GetAvatar() string {
 	if m != nil {
 		return m.Avatar
 	}
@@ -120,13 +136,12 @@ func (m *UserObj) GetAvatar() string {
 }
 
 type NotificationData struct {
-	Subject              string   `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
-	Description          string   `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	User                 *UserObj `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
-	Meta                 string   `protobuf:"bytes,4,opt,name=meta,proto3" json:"meta,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Count                int32             `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	Values               []string          `protobuf:"bytes,2,rep,name=values,proto3" json:"values,omitempty"`
+	User                 *NotificationUser `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
 func (m *NotificationData) Reset()         { *m = NotificationData{} }
@@ -154,45 +169,42 @@ func (m *NotificationData) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_NotificationData proto.InternalMessageInfo
 
-func (m *NotificationData) GetSubject() string {
+func (m *NotificationData) GetCount() int32 {
 	if m != nil {
-		return m.Subject
+		return m.Count
 	}
-	return ""
+	return 0
 }
 
-func (m *NotificationData) GetDescription() string {
+func (m *NotificationData) GetValues() []string {
 	if m != nil {
-		return m.Description
+		return m.Values
 	}
-	return ""
+	return nil
 }
 
-func (m *NotificationData) GetUser() *UserObj {
+func (m *NotificationData) GetUser() *NotificationUser {
 	if m != nil {
 		return m.User
 	}
 	return nil
 }
 
-func (m *NotificationData) GetMeta() string {
-	if m != nil {
-		return m.Meta
-	}
-	return ""
-}
-
 type Notification struct {
-	Id                   string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	SubjectId            int64             `protobuf:"varint,2,opt,name=subjectId,proto3" json:"subjectId,omitempty"`
-	UserId               int64             `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
-	CreatedAt            string            `protobuf:"bytes,4,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	Type                 Type              `protobuf:"varint,5,opt,name=type,proto3,enum=discussproto.Type" json:"type,omitempty"`
-	Viewed               bool              `protobuf:"varint,6,opt,name=viewed,proto3" json:"viewed,omitempty"`
-	Notification         *NotificationData `protobuf:"bytes,7,opt,name=notification,proto3" json:"notification,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	Id                   string              `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Group                string              `protobuf:"bytes,2,opt,name=group,proto3" json:"group,omitempty"`
+	SubjectType          string              `protobuf:"bytes,3,opt,name=subjectType,proto3" json:"subjectType,omitempty"`
+	SubjectId            int64               `protobuf:"varint,4,opt,name=subjectId,proto3" json:"subjectId,omitempty"`
+	UserId               int64               `protobuf:"varint,5,opt,name=userId,proto3" json:"userId,omitempty"`
+	UpdatedAt            string              `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Type                 NotificationType    `protobuf:"varint,7,opt,name=type,proto3,enum=discussproto.NotificationType" json:"type,omitempty"`
+	ActionType           ActionType          `protobuf:"varint,8,opt,name=actionType,proto3,enum=discussproto.ActionType" json:"actionType,omitempty"`
+	Seen                 bool                `protobuf:"varint,9,opt,name=seen,proto3" json:"seen,omitempty"`
+	Notification         string              `protobuf:"bytes,10,opt,name=notification,proto3" json:"notification,omitempty"`
+	Data                 []*NotificationData `protobuf:"bytes,11,rep,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
 func (m *Notification) Reset()         { *m = Notification{} }
@@ -227,6 +239,20 @@ func (m *Notification) GetId() string {
 	return ""
 }
 
+func (m *Notification) GetGroup() string {
+	if m != nil {
+		return m.Group
+	}
+	return ""
+}
+
+func (m *Notification) GetSubjectType() string {
+	if m != nil {
+		return m.SubjectType
+	}
+	return ""
+}
+
 func (m *Notification) GetSubjectId() int64 {
 	if m != nil {
 		return m.SubjectId
@@ -241,39 +267,49 @@ func (m *Notification) GetUserId() int64 {
 	return 0
 }
 
-func (m *Notification) GetCreatedAt() string {
+func (m *Notification) GetUpdatedAt() string {
 	if m != nil {
-		return m.CreatedAt
+		return m.UpdatedAt
 	}
 	return ""
 }
 
-func (m *Notification) GetType() Type {
+func (m *Notification) GetType() NotificationType {
 	if m != nil {
 		return m.Type
 	}
-	return Type_UNKNOWN
+	return NotificationType_DEFAULT
 }
 
-func (m *Notification) GetViewed() bool {
+func (m *Notification) GetActionType() ActionType {
 	if m != nil {
-		return m.Viewed
+		return m.ActionType
+	}
+	return ActionType_SHOW
+}
+
+func (m *Notification) GetSeen() bool {
+	if m != nil {
+		return m.Seen
 	}
 	return false
 }
 
-func (m *Notification) GetNotification() *NotificationData {
+func (m *Notification) GetNotification() string {
 	if m != nil {
 		return m.Notification
+	}
+	return ""
+}
+
+func (m *Notification) GetData() []*NotificationData {
+	if m != nil {
+		return m.Data
 	}
 	return nil
 }
 
 type GetNotificationsRequest struct {
-	Limit                int32    `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Page                 int32    `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	SortBy               string   `protobuf:"bytes,3,opt,name=sortBy,proto3" json:"sortBy,omitempty"`
-	SortByDirection      string   `protobuf:"bytes,4,opt,name=sortByDirection,proto3" json:"sortByDirection,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -304,41 +340,13 @@ func (m *GetNotificationsRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetNotificationsRequest proto.InternalMessageInfo
 
-func (m *GetNotificationsRequest) GetLimit() int32 {
-	if m != nil {
-		return m.Limit
-	}
-	return 0
-}
-
-func (m *GetNotificationsRequest) GetPage() int32 {
-	if m != nil {
-		return m.Page
-	}
-	return 0
-}
-
-func (m *GetNotificationsRequest) GetSortBy() string {
-	if m != nil {
-		return m.SortBy
-	}
-	return ""
-}
-
-func (m *GetNotificationsRequest) GetSortByDirection() string {
-	if m != nil {
-		return m.SortByDirection
-	}
-	return ""
-}
-
 type GetNotificationsResponse struct {
-	Data                 []*Notification `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	Count                int64           `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	Limit                int32           `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
-	Page                 int32           `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	SortBy               string          `protobuf:"bytes,5,opt,name=sortBy,proto3" json:"sortBy,omitempty"`
-	SortByDirection      string          `protobuf:"bytes,6,opt,name=sortByDirection,proto3" json:"sortByDirection,omitempty"`
+	Conversations        []*Notification `protobuf:"bytes,1,rep,name=conversations,proto3" json:"conversations,omitempty"`
+	CsCount              int32           `protobuf:"varint,2,opt,name=csCount,proto3" json:"csCount,omitempty"`
+	Invitations          []*Notification `protobuf:"bytes,3,rep,name=invitations,proto3" json:"invitations,omitempty"`
+	ICount               int32           `protobuf:"varint,4,opt,name=iCount,proto3" json:"iCount,omitempty"`
+	Community            []*Notification `protobuf:"bytes,5,rep,name=community,proto3" json:"community,omitempty"`
+	CCount               int32           `protobuf:"varint,6,opt,name=cCount,proto3" json:"cCount,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
 	XXX_sizecache        int32           `json:"-"`
@@ -369,120 +377,120 @@ func (m *GetNotificationsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetNotificationsResponse proto.InternalMessageInfo
 
-func (m *GetNotificationsResponse) GetData() []*Notification {
+func (m *GetNotificationsResponse) GetConversations() []*Notification {
 	if m != nil {
-		return m.Data
+		return m.Conversations
 	}
 	return nil
 }
 
-func (m *GetNotificationsResponse) GetCount() int64 {
+func (m *GetNotificationsResponse) GetCsCount() int32 {
 	if m != nil {
-		return m.Count
+		return m.CsCount
 	}
 	return 0
 }
 
-func (m *GetNotificationsResponse) GetLimit() int32 {
+func (m *GetNotificationsResponse) GetInvitations() []*Notification {
 	if m != nil {
-		return m.Limit
+		return m.Invitations
+	}
+	return nil
+}
+
+func (m *GetNotificationsResponse) GetICount() int32 {
+	if m != nil {
+		return m.ICount
 	}
 	return 0
 }
 
-func (m *GetNotificationsResponse) GetPage() int32 {
+func (m *GetNotificationsResponse) GetCommunity() []*Notification {
 	if m != nil {
-		return m.Page
+		return m.Community
+	}
+	return nil
+}
+
+func (m *GetNotificationsResponse) GetCCount() int32 {
+	if m != nil {
+		return m.CCount
 	}
 	return 0
 }
 
-func (m *GetNotificationsResponse) GetSortBy() string {
-	if m != nil {
-		return m.SortBy
-	}
-	return ""
-}
-
-func (m *GetNotificationsResponse) GetSortByDirection() string {
-	if m != nil {
-		return m.SortByDirection
-	}
-	return ""
-}
-
-type ViewedNotificationRequest struct {
+type RemoveNotificationRequest struct {
 	NotificationId       string   `protobuf:"bytes,1,opt,name=notificationId,proto3" json:"notificationId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ViewedNotificationRequest) Reset()         { *m = ViewedNotificationRequest{} }
-func (m *ViewedNotificationRequest) String() string { return proto.CompactTextString(m) }
-func (*ViewedNotificationRequest) ProtoMessage()    {}
-func (*ViewedNotificationRequest) Descriptor() ([]byte, []int) {
+func (m *RemoveNotificationRequest) Reset()         { *m = RemoveNotificationRequest{} }
+func (m *RemoveNotificationRequest) String() string { return proto.CompactTextString(m) }
+func (*RemoveNotificationRequest) ProtoMessage()    {}
+func (*RemoveNotificationRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_736a457d4a5efa07, []int{5}
 }
 
-func (m *ViewedNotificationRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ViewedNotificationRequest.Unmarshal(m, b)
+func (m *RemoveNotificationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemoveNotificationRequest.Unmarshal(m, b)
 }
-func (m *ViewedNotificationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ViewedNotificationRequest.Marshal(b, m, deterministic)
+func (m *RemoveNotificationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemoveNotificationRequest.Marshal(b, m, deterministic)
 }
-func (m *ViewedNotificationRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ViewedNotificationRequest.Merge(m, src)
+func (m *RemoveNotificationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveNotificationRequest.Merge(m, src)
 }
-func (m *ViewedNotificationRequest) XXX_Size() int {
-	return xxx_messageInfo_ViewedNotificationRequest.Size(m)
+func (m *RemoveNotificationRequest) XXX_Size() int {
+	return xxx_messageInfo_RemoveNotificationRequest.Size(m)
 }
-func (m *ViewedNotificationRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ViewedNotificationRequest.DiscardUnknown(m)
+func (m *RemoveNotificationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveNotificationRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ViewedNotificationRequest proto.InternalMessageInfo
+var xxx_messageInfo_RemoveNotificationRequest proto.InternalMessageInfo
 
-func (m *ViewedNotificationRequest) GetNotificationId() string {
+func (m *RemoveNotificationRequest) GetNotificationId() string {
 	if m != nil {
 		return m.NotificationId
 	}
 	return ""
 }
 
-type ViewedNotificationResponse struct {
+type RemoveNotificationResponse struct {
 	Done                 bool     `protobuf:"varint,1,opt,name=done,proto3" json:"done,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ViewedNotificationResponse) Reset()         { *m = ViewedNotificationResponse{} }
-func (m *ViewedNotificationResponse) String() string { return proto.CompactTextString(m) }
-func (*ViewedNotificationResponse) ProtoMessage()    {}
-func (*ViewedNotificationResponse) Descriptor() ([]byte, []int) {
+func (m *RemoveNotificationResponse) Reset()         { *m = RemoveNotificationResponse{} }
+func (m *RemoveNotificationResponse) String() string { return proto.CompactTextString(m) }
+func (*RemoveNotificationResponse) ProtoMessage()    {}
+func (*RemoveNotificationResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_736a457d4a5efa07, []int{6}
 }
 
-func (m *ViewedNotificationResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ViewedNotificationResponse.Unmarshal(m, b)
+func (m *RemoveNotificationResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemoveNotificationResponse.Unmarshal(m, b)
 }
-func (m *ViewedNotificationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ViewedNotificationResponse.Marshal(b, m, deterministic)
+func (m *RemoveNotificationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemoveNotificationResponse.Marshal(b, m, deterministic)
 }
-func (m *ViewedNotificationResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ViewedNotificationResponse.Merge(m, src)
+func (m *RemoveNotificationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveNotificationResponse.Merge(m, src)
 }
-func (m *ViewedNotificationResponse) XXX_Size() int {
-	return xxx_messageInfo_ViewedNotificationResponse.Size(m)
+func (m *RemoveNotificationResponse) XXX_Size() int {
+	return xxx_messageInfo_RemoveNotificationResponse.Size(m)
 }
-func (m *ViewedNotificationResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ViewedNotificationResponse.DiscardUnknown(m)
+func (m *RemoveNotificationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveNotificationResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ViewedNotificationResponse proto.InternalMessageInfo
+var xxx_messageInfo_RemoveNotificationResponse proto.InternalMessageInfo
 
-func (m *ViewedNotificationResponse) GetDone() bool {
+func (m *RemoveNotificationResponse) GetDone() bool {
 	if m != nil {
 		return m.Done
 	}
@@ -490,64 +498,66 @@ func (m *ViewedNotificationResponse) GetDone() bool {
 }
 
 func init() {
-	proto.RegisterEnum("discussproto.Type", Type_name, Type_value)
-	proto.RegisterType((*UserObj)(nil), "discussproto.UserObj")
+	proto.RegisterEnum("discussproto.NotificationType", NotificationType_name, NotificationType_value)
+	proto.RegisterEnum("discussproto.ActionType", ActionType_name, ActionType_value)
+	proto.RegisterType((*NotificationUser)(nil), "discussproto.NotificationUser")
 	proto.RegisterType((*NotificationData)(nil), "discussproto.NotificationData")
 	proto.RegisterType((*Notification)(nil), "discussproto.Notification")
 	proto.RegisterType((*GetNotificationsRequest)(nil), "discussproto.GetNotificationsRequest")
 	proto.RegisterType((*GetNotificationsResponse)(nil), "discussproto.GetNotificationsResponse")
-	proto.RegisterType((*ViewedNotificationRequest)(nil), "discussproto.ViewedNotificationRequest")
-	proto.RegisterType((*ViewedNotificationResponse)(nil), "discussproto.ViewedNotificationResponse")
+	proto.RegisterType((*RemoveNotificationRequest)(nil), "discussproto.RemoveNotificationRequest")
+	proto.RegisterType((*RemoveNotificationResponse)(nil), "discussproto.RemoveNotificationResponse")
 }
 
 func init() { proto.RegisterFile("notification.proto", fileDescriptor_736a457d4a5efa07) }
 
 var fileDescriptor_736a457d4a5efa07 = []byte{
-	// 697 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x54, 0x41, 0x6f, 0xda, 0x4a,
-	0x10, 0x7e, 0x06, 0x03, 0x61, 0x40, 0xc4, 0x9a, 0xe4, 0xe5, 0xf9, 0xa1, 0xe8, 0x09, 0x21, 0xbd,
-	0x94, 0xb4, 0x0a, 0xb4, 0x54, 0xea, 0x3d, 0x01, 0xab, 0x42, 0x6d, 0x4c, 0xb4, 0x21, 0x89, 0xd4,
-	0xdb, 0x62, 0x6f, 0xe9, 0xa6, 0xc1, 0xeb, 0xda, 0x0b, 0x51, 0x54, 0x55, 0x95, 0x2a, 0xf5, 0xd8,
-	0x53, 0x6f, 0xfd, 0x1b, 0xfd, 0x1b, 0xbd, 0xf5, 0x2f, 0xf4, 0x37, 0xf4, 0x5c, 0x79, 0x6d, 0x12,
-	0x9b, 0x10, 0xe5, 0xc4, 0x7c, 0xe3, 0xd9, 0x99, 0xef, 0x9b, 0x6f, 0x59, 0x40, 0x4f, 0x48, 0xfe,
-	0x9a, 0x3b, 0x54, 0x72, 0xe1, 0xb5, 0xfd, 0x40, 0x48, 0x81, 0x55, 0x97, 0x87, 0xce, 0x2c, 0x0c,
-	0x15, 0xaa, 0x6f, 0x4f, 0x84, 0x98, 0x5c, 0xb0, 0x0e, 0xf5, 0x79, 0x87, 0x7a, 0x9e, 0x90, 0xaa,
-	0x34, 0x8c, 0x6b, 0xeb, 0xcf, 0x26, 0x5c, 0xbe, 0x99, 0x8d, 0xdb, 0x8e, 0x98, 0x76, 0xa6, 0x97,
-	0x5c, 0xbe, 0x15, 0x97, 0x9d, 0x89, 0xd8, 0x53, 0x1f, 0xf7, 0xe6, 0xf4, 0x82, 0xbb, 0x54, 0x8a,
-	0x20, 0xec, 0x5c, 0x87, 0xf1, 0xb9, 0xa6, 0x05, 0xa5, 0x93, 0x90, 0x05, 0xc3, 0xf1, 0x39, 0xd6,
-	0x20, 0xc7, 0x5d, 0x53, 0x6b, 0x68, 0xad, 0x3c, 0xc9, 0x71, 0x17, 0x11, 0x74, 0x8f, 0x4e, 0x99,
-	0x99, 0x6b, 0x68, 0xad, 0x32, 0x51, 0x31, 0x6e, 0x41, 0x91, 0xce, 0xa9, 0xa4, 0x81, 0x99, 0x57,
-	0xd9, 0x04, 0x35, 0xbf, 0x68, 0x60, 0xd8, 0x29, 0x05, 0x7d, 0x2a, 0x29, 0x9a, 0x50, 0x0a, 0x67,
-	0xe3, 0x73, 0xe6, 0x48, 0xd5, 0xb5, 0x4c, 0x16, 0x10, 0x1b, 0x50, 0x71, 0x59, 0xe8, 0x04, 0xdc,
-	0x8f, 0x8a, 0x93, 0x09, 0xe9, 0x14, 0xee, 0x82, 0x3e, 0x0b, 0x59, 0x3c, 0xa6, 0xd2, 0xfd, 0xbb,
-	0x9d, 0x5e, 0x45, 0x3b, 0x61, 0x4c, 0x54, 0x49, 0xc4, 0x73, 0xca, 0x24, 0x35, 0xf5, 0x98, 0x67,
-	0x14, 0x37, 0x7f, 0x6b, 0x50, 0x4d, 0xf3, 0x49, 0x89, 0x2b, 0x2b, 0x71, 0xdb, 0x50, 0x4e, 0xc8,
-	0x0c, 0x5c, 0x35, 0x3f, 0x4f, 0x6e, 0x12, 0x91, 0xcc, 0xa8, 0xf5, 0xc0, 0x55, 0xf3, 0xf3, 0x24,
-	0x41, 0xd1, 0x29, 0x27, 0x60, 0x54, 0x32, 0x77, 0x5f, 0x26, 0xf3, 0x6e, 0x12, 0xb8, 0x03, 0xba,
-	0xbc, 0xf2, 0x99, 0x59, 0x68, 0x68, 0xad, 0x5a, 0x17, 0xb3, 0x9c, 0x47, 0x57, 0x3e, 0x23, 0xea,
-	0x7b, 0xd4, 0x7d, 0xce, 0xd9, 0x25, 0x73, 0xcd, 0x62, 0x43, 0x6b, 0xad, 0x91, 0x04, 0xe1, 0x01,
-	0x54, 0xd3, 0xb7, 0xc0, 0x2c, 0x29, 0xed, 0xff, 0x65, 0xfb, 0x2c, 0x6f, 0x99, 0x64, 0xce, 0x34,
-	0x3f, 0x6b, 0xf0, 0xcf, 0x73, 0x26, 0xd3, 0x55, 0x21, 0x61, 0xef, 0x66, 0x2c, 0x94, 0xb8, 0x09,
-	0x85, 0x0b, 0x3e, 0xe5, 0xb1, 0x1b, 0x05, 0x12, 0x83, 0x68, 0x7d, 0x3e, 0x9d, 0xc4, 0x36, 0x17,
-	0x88, 0x8a, 0x23, 0x86, 0xa1, 0x08, 0xe4, 0xc1, 0xd5, 0xc2, 0xe6, 0x18, 0x61, 0x0b, 0xd6, 0xe3,
-	0xa8, 0xcf, 0x03, 0xe6, 0x28, 0x92, 0xf1, 0x16, 0x96, 0xd3, 0xcd, 0x1f, 0x1a, 0x98, 0xb7, 0x79,
-	0x84, 0xbe, 0xf0, 0x42, 0x86, 0x6d, 0xd0, 0x5d, 0x2a, 0xa9, 0xa9, 0x35, 0xf2, 0xad, 0x4a, 0xb7,
-	0x7e, 0xb7, 0x40, 0xa2, 0xea, 0x22, 0xe2, 0x8e, 0x98, 0x79, 0x32, 0x31, 0x2a, 0x06, 0x37, 0x72,
-	0xf2, 0xab, 0xe4, 0xe8, 0x2b, 0xe5, 0x14, 0xee, 0x93, 0x53, 0x5c, 0x2d, 0xa7, 0x07, 0xff, 0x9e,
-	0x2a, 0x93, 0x32, 0xec, 0x92, 0xbd, 0xee, 0x40, 0x2d, 0xed, 0xc1, 0x60, 0x71, 0xcf, 0x96, 0xb2,
-	0xcd, 0xc7, 0x50, 0x5f, 0xd5, 0x24, 0x59, 0x0a, 0x82, 0xee, 0x0a, 0x8f, 0xa9, 0xb3, 0x6b, 0x44,
-	0xc5, 0x0f, 0x03, 0xd0, 0xa3, 0x7b, 0x83, 0x15, 0x28, 0x9d, 0xd8, 0x2f, 0xec, 0xe1, 0x99, 0x6d,
-	0xfc, 0x85, 0x00, 0xc5, 0x81, 0x7d, 0x3a, 0x18, 0x59, 0x86, 0x86, 0x55, 0x58, 0xdb, 0xef, 0xf5,
-	0xac, 0xa3, 0x91, 0xd5, 0x37, 0x72, 0x11, 0xea, 0x5b, 0xbd, 0x97, 0x03, 0xdb, 0xea, 0x1b, 0xf9,
-	0x08, 0x11, 0xeb, 0xf8, 0x68, 0x68, 0x1f, 0x5b, 0x86, 0x8e, 0x08, 0xb5, 0x05, 0x3a, 0x1d, 0x58,
-	0x67, 0x56, 0xdf, 0x28, 0xe0, 0x06, 0xac, 0xf7, 0x86, 0x87, 0x87, 0x96, 0x3d, 0xba, 0x6e, 0x52,
-	0xec, 0x7e, 0xcf, 0xc1, 0x46, 0x9a, 0xe0, 0x31, 0x0b, 0xe6, 0xdc, 0x61, 0xf8, 0x11, 0x8c, 0x65,
-	0x43, 0xf1, 0xff, 0xac, 0x75, 0x77, 0x5c, 0xbc, 0xfa, 0xce, 0x7d, 0x65, 0xf1, 0x0a, 0x9a, 0xdb,
-	0x9f, 0x7e, 0xfe, 0xfa, 0x9a, 0xdb, 0xc2, 0x4d, 0xf5, 0xc8, 0xa5, 0xb7, 0xd7, 0x99, 0x32, 0xfc,
-	0xa6, 0x01, 0xde, 0xde, 0x1f, 0x3e, 0xc8, 0x36, 0xbf, 0xd3, 0xa6, 0x7a, 0xeb, 0xfe, 0xc2, 0x84,
-	0xc7, 0x13, 0xc5, 0xe3, 0x51, 0x77, 0xf7, 0x36, 0x8f, 0xf7, 0x59, 0x4f, 0x3f, 0x74, 0xe2, 0xff,
-	0xee, 0x41, 0xed, 0x55, 0xe6, 0xb5, 0x1e, 0x17, 0xd5, 0xcf, 0xd3, 0x3f, 0x01, 0x00, 0x00, 0xff,
-	0xff, 0x64, 0x6c, 0x58, 0x02, 0xd8, 0x05, 0x00, 0x00,
+	// 708 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x55, 0xdf, 0x4e, 0x13, 0x4d,
+	0x14, 0x67, 0xb7, 0x7f, 0xe8, 0x9e, 0x42, 0xb3, 0x39, 0x1f, 0xe1, 0x1b, 0x1a, 0xbe, 0x2f, 0xcd,
+	0xaa, 0xd8, 0x34, 0xa1, 0x35, 0x98, 0x18, 0x2e, 0xbc, 0xb0, 0x42, 0xc5, 0x26, 0x50, 0xcc, 0xb6,
+	0xc4, 0xc4, 0x1b, 0x33, 0xec, 0x8e, 0x75, 0x94, 0xee, 0xd4, 0xce, 0xec, 0x12, 0x62, 0x8c, 0x89,
+	0x89, 0x4f, 0xc0, 0xbd, 0x4f, 0xe0, 0xdb, 0xf8, 0x0a, 0x3e, 0x88, 0xd9, 0xd9, 0x05, 0x76, 0x41,
+	0xe8, 0x15, 0xf3, 0x3b, 0xe7, 0x77, 0x7e, 0xe7, 0xef, 0x52, 0xc0, 0x40, 0x28, 0xfe, 0x8e, 0x7b,
+	0x54, 0x71, 0x11, 0xb4, 0xa7, 0x33, 0xa1, 0x04, 0x2e, 0xf9, 0x5c, 0x7a, 0xa1, 0x94, 0x1a, 0xd5,
+	0xd7, 0xc7, 0x42, 0x8c, 0x4f, 0x58, 0x87, 0x4e, 0x79, 0x87, 0x06, 0x81, 0x50, 0x9a, 0x2a, 0x13,
+	0x6e, 0xfd, 0xc9, 0x98, 0xab, 0xf7, 0xe1, 0x71, 0xdb, 0x13, 0x93, 0xce, 0xe4, 0x94, 0xab, 0x8f,
+	0xe2, 0xb4, 0x33, 0x16, 0x9b, 0xda, 0xb9, 0x19, 0xd1, 0x13, 0xee, 0x53, 0x25, 0x66, 0xb2, 0x73,
+	0xf9, 0x4c, 0xe2, 0x9c, 0x01, 0xd8, 0x83, 0x4c, 0xe6, 0x23, 0xc9, 0x66, 0x58, 0x03, 0x93, 0xfb,
+	0xc4, 0x68, 0x18, 0xcd, 0x82, 0x6b, 0x72, 0x1f, 0x11, 0x8a, 0x01, 0x9d, 0x30, 0x62, 0x36, 0x8c,
+	0xa6, 0xe5, 0xea, 0x37, 0xae, 0x42, 0x99, 0x46, 0x54, 0xd1, 0x19, 0x29, 0x68, 0x6b, 0x8a, 0x1c,
+	0x95, 0xd7, 0xdb, 0xa5, 0x8a, 0xe2, 0x0a, 0x94, 0x3c, 0x11, 0x06, 0x4a, 0x4b, 0x96, 0xdc, 0x04,
+	0xc4, 0x0a, 0x11, 0x3d, 0x09, 0x99, 0x24, 0x66, 0xa3, 0x10, 0x2b, 0x24, 0x08, 0xb7, 0xa0, 0x18,
+	0x4a, 0x96, 0xe8, 0x56, 0xb7, 0xfe, 0x6f, 0x67, 0x87, 0xd0, 0xbe, 0x5e, 0xab, 0xab, 0xb9, 0xce,
+	0xf7, 0x02, 0x2c, 0x65, 0x5d, 0x99, 0x16, 0x2c, 0xdd, 0xc2, 0x0a, 0x94, 0xc6, 0x33, 0x11, 0x4e,
+	0xd3, 0x1e, 0x12, 0x80, 0x0d, 0xa8, 0xca, 0xf0, 0xf8, 0x03, 0xf3, 0xd4, 0xe8, 0x6c, 0xca, 0xd2,
+	0x4e, 0xb2, 0x26, 0x5c, 0x07, 0x2b, 0x85, 0x7d, 0x9f, 0x14, 0xf5, 0x44, 0xae, 0x0c, 0x71, 0x0b,
+	0x71, 0xfa, 0xbe, 0x4f, 0x4a, 0xda, 0x95, 0x22, 0xfc, 0x0f, 0x20, 0x9c, 0xfa, 0x54, 0x31, 0xff,
+	0x2d, 0x55, 0xa4, 0xac, 0x65, 0xad, 0xd4, 0xd2, 0x55, 0x71, 0x87, 0x2a, 0xce, 0xb7, 0xd8, 0x30,
+	0x9a, 0xb5, 0xbb, 0x3a, 0x8c, 0x4b, 0x70, 0x35, 0x17, 0xb7, 0x01, 0xa8, 0x77, 0x61, 0x23, 0x15,
+	0x1d, 0x49, 0xf2, 0x91, 0xdd, 0x4b, 0xbf, 0x9b, 0xe1, 0xc6, 0xdb, 0x93, 0x8c, 0x05, 0xc4, 0x6a,
+	0x18, 0xcd, 0x8a, 0xab, 0xdf, 0xe8, 0xc0, 0x52, 0xf6, 0xde, 0x08, 0xe8, 0x12, 0x73, 0xb6, 0xb8,
+	0x4a, 0x9f, 0x2a, 0x4a, 0xaa, 0x8d, 0xc2, 0xdd, 0x7b, 0x88, 0x77, 0xec, 0x6a, 0xae, 0xb3, 0x06,
+	0xff, 0xee, 0x31, 0x95, 0x75, 0x4a, 0x97, 0x7d, 0x0a, 0x99, 0x54, 0xce, 0x0f, 0x13, 0xc8, 0x4d,
+	0x9f, 0x9c, 0x8a, 0x40, 0x32, 0x7c, 0x06, 0xcb, 0x9e, 0x08, 0x22, 0x36, 0x93, 0x89, 0x83, 0x18,
+	0x3a, 0x69, 0xfd, 0xf6, 0xa4, 0x6e, 0x3e, 0x00, 0x09, 0x2c, 0x7a, 0x72, 0x47, 0x5f, 0x99, 0xa9,
+	0xaf, 0xec, 0x02, 0xe2, 0x53, 0xa8, 0xf2, 0x20, 0xe2, 0xe9, 0xe7, 0x42, 0x0a, 0x73, 0x95, 0xb3,
+	0xf4, 0x78, 0xc5, 0x3c, 0x91, 0x2d, 0x6a, 0xd9, 0x14, 0xe1, 0x36, 0x58, 0x9e, 0x98, 0x4c, 0xc2,
+	0x80, 0xab, 0x33, 0x52, 0x9a, 0xab, 0x79, 0x45, 0x8e, 0x15, 0xbd, 0x44, 0xb1, 0x9c, 0x28, 0x26,
+	0xc8, 0xd9, 0x81, 0x35, 0x97, 0x4d, 0x44, 0xc4, 0x72, 0x81, 0xc9, 0xf4, 0x70, 0x03, 0x6a, 0xd9,
+	0xe5, 0xf4, 0x2f, 0x6e, 0xfb, 0x9a, 0xd5, 0x79, 0x04, 0xf5, 0xbf, 0x89, 0xa4, 0x63, 0x46, 0x28,
+	0xfa, 0x22, 0x60, 0x3a, 0xb6, 0xe2, 0xea, 0x77, 0xab, 0x97, 0xff, 0x60, 0xf5, 0xc9, 0x54, 0x61,
+	0x71, 0xb7, 0xf7, 0xa2, 0x7b, 0xb4, 0x3f, 0xb2, 0x17, 0x10, 0xa0, 0x3c, 0xec, 0x0f, 0xf6, 0xf6,
+	0x7b, 0xb6, 0x81, 0xcb, 0x60, 0xbd, 0xea, 0xb9, 0x07, 0xfd, 0x41, 0x77, 0x30, 0xb2, 0x4d, 0xb4,
+	0xa0, 0xb4, 0x73, 0x78, 0x34, 0x18, 0xd9, 0x85, 0xd6, 0x3d, 0x80, 0xab, 0xfb, 0xc3, 0x0a, 0x14,
+	0x87, 0x2f, 0x0f, 0x5f, 0xdb, 0x0b, 0x5a, 0xaa, 0x3f, 0x3c, 0xe8, 0x0f, 0x87, 0xb6, 0xb1, 0xf5,
+	0xd3, 0x84, 0x7f, 0xb2, 0xc9, 0x86, 0x6c, 0x16, 0x71, 0x8f, 0xe1, 0x57, 0xb0, 0xaf, 0x9f, 0x06,
+	0x3e, 0xc8, 0x4f, 0xf3, 0x96, 0xb3, 0xaa, 0x6f, 0xcc, 0xa3, 0x25, 0xad, 0x3b, 0xeb, 0xdf, 0x7e,
+	0xfd, 0x3e, 0x37, 0x57, 0x71, 0x45, 0xff, 0xff, 0xcc, 0x4e, 0xad, 0x33, 0x61, 0x78, 0x6e, 0x00,
+	0xde, 0x9c, 0x1b, 0x3e, 0xcc, 0x8b, 0xdf, 0xba, 0x9e, 0x7a, 0x73, 0x3e, 0x31, 0xad, 0xa3, 0xa5,
+	0xeb, 0xb8, 0xdf, 0x72, 0x6e, 0xd6, 0xf1, 0x39, 0xbf, 0xcb, 0x2f, 0xcf, 0x6b, 0x6f, 0x72, 0xbf,
+	0x00, 0xc7, 0x65, 0xfd, 0xe7, 0xf1, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xa9, 0x30, 0xe8, 0x6b,
+	0x2c, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -563,7 +573,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NotificationServiceClient interface {
 	GetNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*GetNotificationsResponse, error)
-	ViewedNotification(ctx context.Context, in *ViewedNotificationRequest, opts ...grpc.CallOption) (*ViewedNotificationResponse, error)
+	RemoveNotification(ctx context.Context, in *RemoveNotificationRequest, opts ...grpc.CallOption) (*RemoveNotificationResponse, error)
 }
 
 type notificationServiceClient struct {
@@ -583,9 +593,9 @@ func (c *notificationServiceClient) GetNotifications(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *notificationServiceClient) ViewedNotification(ctx context.Context, in *ViewedNotificationRequest, opts ...grpc.CallOption) (*ViewedNotificationResponse, error) {
-	out := new(ViewedNotificationResponse)
-	err := c.cc.Invoke(ctx, "/discussproto.NotificationService/ViewedNotification", in, out, opts...)
+func (c *notificationServiceClient) RemoveNotification(ctx context.Context, in *RemoveNotificationRequest, opts ...grpc.CallOption) (*RemoveNotificationResponse, error) {
+	out := new(RemoveNotificationResponse)
+	err := c.cc.Invoke(ctx, "/discussproto.NotificationService/RemoveNotification", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -595,7 +605,7 @@ func (c *notificationServiceClient) ViewedNotification(ctx context.Context, in *
 // NotificationServiceServer is the server API for NotificationService service.
 type NotificationServiceServer interface {
 	GetNotifications(context.Context, *GetNotificationsRequest) (*GetNotificationsResponse, error)
-	ViewedNotification(context.Context, *ViewedNotificationRequest) (*ViewedNotificationResponse, error)
+	RemoveNotification(context.Context, *RemoveNotificationRequest) (*RemoveNotificationResponse, error)
 }
 
 func RegisterNotificationServiceServer(s *grpc.Server, srv NotificationServiceServer) {
@@ -620,20 +630,20 @@ func _NotificationService_GetNotifications_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NotificationService_ViewedNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ViewedNotificationRequest)
+func _NotificationService_RemoveNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveNotificationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NotificationServiceServer).ViewedNotification(ctx, in)
+		return srv.(NotificationServiceServer).RemoveNotification(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/discussproto.NotificationService/ViewedNotification",
+		FullMethod: "/discussproto.NotificationService/RemoveNotification",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationServiceServer).ViewedNotification(ctx, req.(*ViewedNotificationRequest))
+		return srv.(NotificationServiceServer).RemoveNotification(ctx, req.(*RemoveNotificationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -647,8 +657,8 @@ var _NotificationService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NotificationService_GetNotifications_Handler,
 		},
 		{
-			MethodName: "ViewedNotification",
-			Handler:    _NotificationService_ViewedNotification_Handler,
+			MethodName: "RemoveNotification",
+			Handler:    _NotificationService_RemoveNotification_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

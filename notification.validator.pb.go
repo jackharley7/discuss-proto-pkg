@@ -17,7 +17,7 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *UserObj) Validate() error {
+func (this *NotificationUser) Validate() error {
 	return nil
 }
 func (this *NotificationData) Validate() error {
@@ -29,17 +29,6 @@ func (this *NotificationData) Validate() error {
 	return nil
 }
 func (this *Notification) Validate() error {
-	if this.Notification != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Notification); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Notification", err)
-		}
-	}
-	return nil
-}
-func (this *GetNotificationsRequest) Validate() error {
-	return nil
-}
-func (this *GetNotificationsResponse) Validate() error {
 	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
@@ -49,9 +38,36 @@ func (this *GetNotificationsResponse) Validate() error {
 	}
 	return nil
 }
-func (this *ViewedNotificationRequest) Validate() error {
+func (this *GetNotificationsRequest) Validate() error {
 	return nil
 }
-func (this *ViewedNotificationResponse) Validate() error {
+func (this *GetNotificationsResponse) Validate() error {
+	for _, item := range this.Conversations {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Conversations", err)
+			}
+		}
+	}
+	for _, item := range this.Invitations {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Invitations", err)
+			}
+		}
+	}
+	for _, item := range this.Community {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Community", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *RemoveNotificationRequest) Validate() error {
+	return nil
+}
+func (this *RemoveNotificationResponse) Validate() error {
 	return nil
 }
