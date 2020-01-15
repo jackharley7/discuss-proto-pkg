@@ -7,8 +7,8 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -60,6 +60,9 @@ func (this *GetCommentsResponse) Validate() error {
 	}
 	return nil
 }
+func (this *CommentNotification) Validate() error {
+	return nil
+}
 func (this *CreateCommentRequest) Validate() error {
 	if this.Comment != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Comment); err != nil {
@@ -71,9 +74,6 @@ func (this *CreateCommentRequest) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Notification", err)
 		}
 	}
-	return nil
-}
-func (this *CreateCommentRequest_Notification) Validate() error {
 	return nil
 }
 func (this *CreateCommentResponse) Validate() error {
