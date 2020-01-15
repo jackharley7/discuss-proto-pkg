@@ -66,6 +66,14 @@ func (this *CreateCommentRequest) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Comment", err)
 		}
 	}
+	if this.Notification != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Notification); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Notification", err)
+		}
+	}
+	return nil
+}
+func (this *CreateCommentRequest_Notification) Validate() error {
 	return nil
 }
 func (this *CreateCommentResponse) Validate() error {
