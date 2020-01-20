@@ -38,6 +38,29 @@ func (this *Notification) Validate() error {
 	}
 	return nil
 }
+func (this *NotificationCompact) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *GetNotificationBySubjectIDsRequest) Validate() error {
+	return nil
+}
+func (this *GetNotificationBySubjectIDsResponse) Validate() error {
+	for _, item := range this.Notifications {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Notifications", err)
+			}
+		}
+	}
+	return nil
+}
 func (this *GetNotificationsRequest) Validate() error {
 	return nil
 }
