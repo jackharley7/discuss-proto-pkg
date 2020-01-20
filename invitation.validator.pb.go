@@ -69,13 +69,6 @@ func (this *GetInvitationsByUserIDMessage) Validate() error {
 	return nil
 }
 func (this *GetInvitationsByUserIDResponse) Validate() error {
-	for _, item := range this.InvitationList {
-		if item != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("InvitationList", err)
-			}
-		}
-	}
 	return nil
 }
 func (this *GetInvitationByIDMessage) Validate() error {
