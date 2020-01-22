@@ -619,7 +619,7 @@ var (
 
 	pattern_InvitationService_GetInvitationCountByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "user", "me", "invitation", "count"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_InvitationService_GetInvitationsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "user", "invitation"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_InvitationService_GetInvitationsByUserID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "user", "me", "invitation"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_InvitationService_GetInvitationByID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "p", "invitation", "invitationId"}, "", runtime.AssumeColonVerbOpt(true)))
 
