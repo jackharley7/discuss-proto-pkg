@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -370,6 +372,17 @@ func (c *linkServiceClient) BuildLinkFromURL(ctx context.Context, in *BuildLinkF
 type LinkServiceServer interface {
 	CreateLink(context.Context, *CreateLinkMessage) (*CreateLinkResponse, error)
 	BuildLinkFromURL(context.Context, *BuildLinkFromURLMessage) (*BuildLinkFromURLResponse, error)
+}
+
+// UnimplementedLinkServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedLinkServiceServer struct {
+}
+
+func (*UnimplementedLinkServiceServer) CreateLink(ctx context.Context, req *CreateLinkMessage) (*CreateLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateLink not implemented")
+}
+func (*UnimplementedLinkServiceServer) BuildLinkFromURL(ctx context.Context, req *BuildLinkFromURLMessage) (*BuildLinkFromURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildLinkFromURL not implemented")
 }
 
 func RegisterLinkServiceServer(s *grpc.Server, srv LinkServiceServer) {

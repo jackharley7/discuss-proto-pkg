@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -503,6 +505,17 @@ func (c *hashTagServiceClient) GetHashTag(ctx context.Context, in *GetHashTagReq
 type HashTagServiceServer interface {
 	GetHashTags(context.Context, *GetHashTagsRequest) (*GetHashTagsResponse, error)
 	GetHashTag(context.Context, *GetHashTagRequest) (*GetHashTagResponse, error)
+}
+
+// UnimplementedHashTagServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedHashTagServiceServer struct {
+}
+
+func (*UnimplementedHashTagServiceServer) GetHashTags(ctx context.Context, req *GetHashTagsRequest) (*GetHashTagsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHashTags not implemented")
+}
+func (*UnimplementedHashTagServiceServer) GetHashTag(ctx context.Context, req *GetHashTagRequest) (*GetHashTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHashTag not implemented")
 }
 
 func RegisterHashTagServiceServer(s *grpc.Server, srv HashTagServiceServer) {

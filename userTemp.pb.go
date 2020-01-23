@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -642,6 +644,23 @@ type UserTempServiceServer interface {
 	VerfiyUserTemp(context.Context, *VerifyUserTempRequest) (*VerifyUserTempResponse, error)
 	GetTwitterRequestToken(context.Context, *GetTwitterRequestTokenRequest) (*GetTwitterRequestTokenResponse, error)
 	TwitterSignup(context.Context, *TwitterSignupRequest) (*TwitterSignupResponse, error)
+}
+
+// UnimplementedUserTempServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedUserTempServiceServer struct {
+}
+
+func (*UnimplementedUserTempServiceServer) CreateUserTemp(ctx context.Context, req *CreateUserTempRequest) (*CreateUserTempResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserTemp not implemented")
+}
+func (*UnimplementedUserTempServiceServer) VerfiyUserTemp(ctx context.Context, req *VerifyUserTempRequest) (*VerifyUserTempResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerfiyUserTemp not implemented")
+}
+func (*UnimplementedUserTempServiceServer) GetTwitterRequestToken(ctx context.Context, req *GetTwitterRequestTokenRequest) (*GetTwitterRequestTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTwitterRequestToken not implemented")
+}
+func (*UnimplementedUserTempServiceServer) TwitterSignup(ctx context.Context, req *TwitterSignupRequest) (*TwitterSignupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TwitterSignup not implemented")
 }
 
 func RegisterUserTempServiceServer(s *grpc.Server, srv UserTempServiceServer) {

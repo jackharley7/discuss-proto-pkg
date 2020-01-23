@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -2033,6 +2035,62 @@ type UserServiceServer interface {
 	UnLinkTwitter(context.Context, *UnLinkTwitterRequest) (*UnLinkTwitterResponse, error)
 	GetTwitterUserByScreenName(context.Context, *GetTwitterUserByScreenNameRequest) (*GetTwitterUserByScreenNameResponse, error)
 	GetProfileImageUploadURL(context.Context, *GetProfileImageUploadURLRequest) (*GetProfileImageUploadURLResponse, error)
+}
+
+// UnimplementedUserServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedUserServiceServer struct {
+}
+
+func (*UnimplementedUserServiceServer) Login(ctx context.Context, req *LoginRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (*UnimplementedUserServiceServer) RefreshUserToken(ctx context.Context, req *RefreshUserTokenRequest) (*RefreshUserTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshUserToken not implemented")
+}
+func (*UnimplementedUserServiceServer) CreateUser(ctx context.Context, req *CreateUserRequest) (*CreateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (*UnimplementedUserServiceServer) ChangePassword(ctx context.Context, req *ChangePasswordRequest) (*ChangePasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
+}
+func (*UnimplementedUserServiceServer) ChangePasswordFromTemp(ctx context.Context, req *ChangePasswordFromTempRequest) (*ChangePasswordFromTempResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangePasswordFromTemp not implemented")
+}
+func (*UnimplementedUserServiceServer) RequestPasswordReset(ctx context.Context, req *RequestPasswordResetRequest) (*RequestPasswordResetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestPasswordReset not implemented")
+}
+func (*UnimplementedUserServiceServer) GetUsers(ctx context.Context, req *GetUsersRequest) (*GetUsersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUsers not implemented")
+}
+func (*UnimplementedUserServiceServer) GetByIDs(ctx context.Context, req *GetByIdsRequest) (*GetByIdsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByIDs not implemented")
+}
+func (*UnimplementedUserServiceServer) GetUserById(ctx context.Context, req *GetUserByIdRequest) (*GetUserByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserById not implemented")
+}
+func (*UnimplementedUserServiceServer) GetUserMe(ctx context.Context, req *GetUserMeRequest) (*GetUserMeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserMe not implemented")
+}
+func (*UnimplementedUserServiceServer) UpdateUser(ctx context.Context, req *UpdateUserRequest) (*UpdateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
+}
+func (*UnimplementedUserServiceServer) DeleteUser(ctx context.Context, req *DeleteUserRequest) (*DeleteUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (*UnimplementedUserServiceServer) GetUserByTwitterScreenName(ctx context.Context, req *GetUserByTwitterScreenNameRequest) (*GetUserByTwitterScreenNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserByTwitterScreenName not implemented")
+}
+func (*UnimplementedUserServiceServer) LinkTwitter(ctx context.Context, req *LinkTwitterRequest) (*LinkTwitterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LinkTwitter not implemented")
+}
+func (*UnimplementedUserServiceServer) UnLinkTwitter(ctx context.Context, req *UnLinkTwitterRequest) (*UnLinkTwitterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnLinkTwitter not implemented")
+}
+func (*UnimplementedUserServiceServer) GetTwitterUserByScreenName(ctx context.Context, req *GetTwitterUserByScreenNameRequest) (*GetTwitterUserByScreenNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTwitterUserByScreenName not implemented")
+}
+func (*UnimplementedUserServiceServer) GetProfileImageUploadURL(ctx context.Context, req *GetProfileImageUploadURLRequest) (*GetProfileImageUploadURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfileImageUploadURL not implemented")
 }
 
 func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {

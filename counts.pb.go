@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -215,6 +217,14 @@ func (c *countServiceClient) GetUserCounts(ctx context.Context, in *GetUserCount
 // CountServiceServer is the server API for CountService service.
 type CountServiceServer interface {
 	GetUserCounts(context.Context, *GetUserCountsRequest) (*GetUserCountsResponse, error)
+}
+
+// UnimplementedCountServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedCountServiceServer struct {
+}
+
+func (*UnimplementedCountServiceServer) GetUserCounts(ctx context.Context, req *GetUserCountsRequest) (*GetUserCountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserCounts not implemented")
 }
 
 func RegisterCountServiceServer(s *grpc.Server, srv CountServiceServer) {

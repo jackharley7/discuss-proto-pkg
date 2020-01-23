@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -457,6 +459,20 @@ type EducationServiceServer interface {
 	CreateEducation(context.Context, *CreateEducationRequest) (*CreateEducationResponse, error)
 	UpdateEducation(context.Context, *UpdateEducationRequest) (*UpdateEducationResponse, error)
 	DeleteEducation(context.Context, *DeleteEducationRequest) (*DeleteEducationResponse, error)
+}
+
+// UnimplementedEducationServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedEducationServiceServer struct {
+}
+
+func (*UnimplementedEducationServiceServer) CreateEducation(ctx context.Context, req *CreateEducationRequest) (*CreateEducationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateEducation not implemented")
+}
+func (*UnimplementedEducationServiceServer) UpdateEducation(ctx context.Context, req *UpdateEducationRequest) (*UpdateEducationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEducation not implemented")
+}
+func (*UnimplementedEducationServiceServer) DeleteEducation(ctx context.Context, req *DeleteEducationRequest) (*DeleteEducationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteEducation not implemented")
 }
 
 func RegisterEducationServiceServer(s *grpc.Server, srv EducationServiceServer) {

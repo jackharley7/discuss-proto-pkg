@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -933,6 +935,32 @@ type InvitationServiceServer interface {
 	RejectInvitation(context.Context, *RejectInvitationMessage) (*RejectInvitationResponse, error)
 	AcceptInvitation(context.Context, *AcceptInvitationMessage) (*AcceptInvitationResponse, error)
 	LinkTwitterUserToConversations(context.Context, *LinkTwitterUserToConversationsRequest) (*LinkTwitterUserToConversationsResponse, error)
+}
+
+// UnimplementedInvitationServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedInvitationServiceServer struct {
+}
+
+func (*UnimplementedInvitationServiceServer) CreateConversation(ctx context.Context, req *CreateConversationMessage) (*CreateConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConversation not implemented")
+}
+func (*UnimplementedInvitationServiceServer) GetInvitationCountByUserID(ctx context.Context, req *GetInvitationCountByUserIDMessage) (*GetInvitationCountByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInvitationCountByUserID not implemented")
+}
+func (*UnimplementedInvitationServiceServer) GetInvitationsByUserID(ctx context.Context, req *GetInvitationsByUserIDMessage) (*GetInvitationsByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInvitationsByUserID not implemented")
+}
+func (*UnimplementedInvitationServiceServer) GetInvitationByID(ctx context.Context, req *GetInvitationByIDMessage) (*GetInvitationByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInvitationByID not implemented")
+}
+func (*UnimplementedInvitationServiceServer) RejectInvitation(ctx context.Context, req *RejectInvitationMessage) (*RejectInvitationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RejectInvitation not implemented")
+}
+func (*UnimplementedInvitationServiceServer) AcceptInvitation(ctx context.Context, req *AcceptInvitationMessage) (*AcceptInvitationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AcceptInvitation not implemented")
+}
+func (*UnimplementedInvitationServiceServer) LinkTwitterUserToConversations(ctx context.Context, req *LinkTwitterUserToConversationsRequest) (*LinkTwitterUserToConversationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LinkTwitterUserToConversations not implemented")
 }
 
 func RegisterInvitationServiceServer(s *grpc.Server, srv InvitationServiceServer) {

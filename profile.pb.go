@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -354,6 +356,17 @@ func (c *profileServiceClient) GetProfileProgress(ctx context.Context, in *GetPr
 type ProfileServiceServer interface {
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*UpdateProfileResponse, error)
 	GetProfileProgress(context.Context, *GetProfileProgressRequest) (*GetProfileProgressResponse, error)
+}
+
+// UnimplementedProfileServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedProfileServiceServer struct {
+}
+
+func (*UnimplementedProfileServiceServer) UpdateProfile(ctx context.Context, req *UpdateProfileRequest) (*UpdateProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
+}
+func (*UnimplementedProfileServiceServer) GetProfileProgress(ctx context.Context, req *GetProfileProgressRequest) (*GetProfileProgressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfileProgress not implemented")
 }
 
 func RegisterProfileServiceServer(s *grpc.Server, srv ProfileServiceServer) {

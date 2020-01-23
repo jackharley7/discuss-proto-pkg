@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -452,6 +454,20 @@ type CommentUpvoteServiceServer interface {
 	UpvoteComment(context.Context, *UpvoteCommentRequest) (*UpvoteCommentResponse, error)
 	DownvoteComment(context.Context, *DownvoteCommentRequest) (*DownvoteCommentResponse, error)
 	RemoveVoteComment(context.Context, *RemoveVoteCommentRequest) (*RemoveVoteCommentResponse, error)
+}
+
+// UnimplementedCommentUpvoteServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedCommentUpvoteServiceServer struct {
+}
+
+func (*UnimplementedCommentUpvoteServiceServer) UpvoteComment(ctx context.Context, req *UpvoteCommentRequest) (*UpvoteCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpvoteComment not implemented")
+}
+func (*UnimplementedCommentUpvoteServiceServer) DownvoteComment(ctx context.Context, req *DownvoteCommentRequest) (*DownvoteCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DownvoteComment not implemented")
+}
+func (*UnimplementedCommentUpvoteServiceServer) RemoveVoteComment(ctx context.Context, req *RemoveVoteCommentRequest) (*RemoveVoteCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveVoteComment not implemented")
 }
 
 func RegisterCommentUpvoteServiceServer(s *grpc.Server, srv CommentUpvoteServiceServer) {

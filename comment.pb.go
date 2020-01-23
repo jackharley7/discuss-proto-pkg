@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -737,6 +739,20 @@ type CommentServiceServer interface {
 	CreateComment(context.Context, *CreateCommentRequest) (*CreateCommentResponse, error)
 	GetComments(context.Context, *GetCommentsRequest) (*GetCommentsResponse, error)
 	GetComment(context.Context, *GetCommentRequest) (*GetCommentResponse, error)
+}
+
+// UnimplementedCommentServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedCommentServiceServer struct {
+}
+
+func (*UnimplementedCommentServiceServer) CreateComment(ctx context.Context, req *CreateCommentRequest) (*CreateCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateComment not implemented")
+}
+func (*UnimplementedCommentServiceServer) GetComments(ctx context.Context, req *GetCommentsRequest) (*GetCommentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetComments not implemented")
+}
+func (*UnimplementedCommentServiceServer) GetComment(ctx context.Context, req *GetCommentRequest) (*GetCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetComment not implemented")
 }
 
 func RegisterCommentServiceServer(s *grpc.Server, srv CommentServiceServer) {

@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1851,6 +1853,47 @@ type ConversationServiceServer interface {
 	GetConversationEntryDraft(context.Context, *GetConversationEntryDraftRequest) (*GetConversationEntryDraftResponse, error)
 	GetConversationEntries(context.Context, *GetConversationEntriesRequest) (*GetConversationEntriesResponse, error)
 	CreateConversationFromCMMComment(context.Context, *CreateConversationFromCMMCommentRequest) (*CreateConversationFromCMMCommentResponse, error)
+}
+
+// UnimplementedConversationServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedConversationServiceServer struct {
+}
+
+func (*UnimplementedConversationServiceServer) Search(ctx context.Context, req *SearchRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetConversationOrder(ctx context.Context, req *GetConversationOrderRequest) (*GetConversationOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConversationOrder not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetConversationsByIDs(ctx context.Context, req *GetConversationsByIDsRequest) (*GetConversationsByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConversationsByIDs not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetByUserMe(ctx context.Context, req *GetByUserMeMessage) (*GetByUserMeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByUserMe not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetByUserID(ctx context.Context, req *GetByUserIDMessage) (*GetByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByUserID not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetByID(ctx context.Context, req *GetByIDMessage) (*GetByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByID not implemented")
+}
+func (*UnimplementedConversationServiceServer) CreateConversationEntry(ctx context.Context, req *CreateConversationEntryRequest) (*CreateConversationEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConversationEntry not implemented")
+}
+func (*UnimplementedConversationServiceServer) UpdateConversationEntry(ctx context.Context, req *UpdateConversationEntryRequest) (*UpdateConversationEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateConversationEntry not implemented")
+}
+func (*UnimplementedConversationServiceServer) SubmitConversationEntry(ctx context.Context, req *SubmitConversationEntryRequest) (*SubmitConversationEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitConversationEntry not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetConversationEntryDraft(ctx context.Context, req *GetConversationEntryDraftRequest) (*GetConversationEntryDraftResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConversationEntryDraft not implemented")
+}
+func (*UnimplementedConversationServiceServer) GetConversationEntries(ctx context.Context, req *GetConversationEntriesRequest) (*GetConversationEntriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConversationEntries not implemented")
+}
+func (*UnimplementedConversationServiceServer) CreateConversationFromCMMComment(ctx context.Context, req *CreateConversationFromCMMCommentRequest) (*CreateConversationFromCMMCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConversationFromCMMComment not implemented")
 }
 
 func RegisterConversationServiceServer(s *grpc.Server, srv ConversationServiceServer) {

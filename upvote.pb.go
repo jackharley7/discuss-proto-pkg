@@ -10,6 +10,8 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -680,6 +682,23 @@ type UpvoteServiceServer interface {
 	Downvote(context.Context, *DownvoteRequest) (*DownvoteResponse, error)
 	RemoveVote(context.Context, *RemoveVoteRequest) (*RemoveVoteResponse, error)
 	CheckUserVotes(context.Context, *CheckUserVotesRequest) (*CheckUserVotesResponse, error)
+}
+
+// UnimplementedUpvoteServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedUpvoteServiceServer struct {
+}
+
+func (*UnimplementedUpvoteServiceServer) Upvote(ctx context.Context, req *UpvoteRequest) (*UpvoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upvote not implemented")
+}
+func (*UnimplementedUpvoteServiceServer) Downvote(ctx context.Context, req *DownvoteRequest) (*DownvoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Downvote not implemented")
+}
+func (*UnimplementedUpvoteServiceServer) RemoveVote(ctx context.Context, req *RemoveVoteRequest) (*RemoveVoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveVote not implemented")
+}
+func (*UnimplementedUpvoteServiceServer) CheckUserVotes(ctx context.Context, req *CheckUserVotesRequest) (*CheckUserVotesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckUserVotes not implemented")
 }
 
 func RegisterUpvoteServiceServer(s *grpc.Server, srv UpvoteServiceServer) {
