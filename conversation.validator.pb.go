@@ -170,3 +170,9 @@ func (this *CreateConversationFromCMMCommentResponse) Validate() error {
 	}
 	return nil
 }
+func (this *ToggleConversationEmailNotificationsRequest) Validate() error {
+	return nil
+}
+func (this *ToggleConversationEmailNotificationsResponse) Validate() error {
+	return nil
+}
