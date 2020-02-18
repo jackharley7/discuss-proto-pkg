@@ -20,6 +20,9 @@ var _ = math.Inf
 func (this *Subscription) Validate() error {
 	return nil
 }
+func (this *SubscriptionCheck) Validate() error {
+	return nil
+}
 func (this *CreateSubscriptionRequest) Validate() error {
 	return nil
 }
@@ -51,6 +54,19 @@ func (this *GetSubscriptionsResponse) Validate() error {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
 				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *CheckUserSubscriptionsRequest) Validate() error {
+	return nil
+}
+func (this *CheckUserSubscriptionsResponse) Validate() error {
+	for _, item := range this.Subscriptions {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Subscriptions", err)
 			}
 		}
 	}
