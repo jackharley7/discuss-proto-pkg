@@ -32,6 +32,17 @@ func (this *RemoveSubscriptionRequest) Validate() error {
 func (this *RemoveSubscriptionResponse) Validate() error {
 	return nil
 }
+func (this *GetSubscriptionRequest) Validate() error {
+	return nil
+}
+func (this *GetSubscriptionResponse) Validate() error {
+	if this.Subscription != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Subscription); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Subscription", err)
+		}
+	}
+	return nil
+}
 func (this *GetSubscriptionsRequest) Validate() error {
 	return nil
 }
