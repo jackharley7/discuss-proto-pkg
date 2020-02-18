@@ -533,7 +533,7 @@ var (
 
 	pattern_SubscriptionService_GetSubscriptions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "subscription"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_SubscriptionService_CheckUserSubscriptions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "subscription", "check"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_SubscriptionService_CheckUserSubscriptions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "subscriptions", "check"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
